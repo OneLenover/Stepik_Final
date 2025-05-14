@@ -16,3 +16,14 @@ class LoginPage(BasePage):
 
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "Register form is not presented"
+
+    def register_new_user(self, email, password):
+        email_input = self.browser.find_element(*LoginPageLocators.REGISTER_EMAIL)
+        password_input = self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD1)
+        password_confirm = self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD2)
+        register_button = self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON)
+
+        email_input.send_keys(email)
+        password_input.send_keys(password)
+        password_confirm.send_keys(password)
+        register_button.click()
